@@ -26,7 +26,7 @@ public class User {
         this.denom = denom;
         this.style = style;
         this.ministryFeatures = ministryFeatures;
-    };
+    }
 
     public String getUsername() {
         return username;
