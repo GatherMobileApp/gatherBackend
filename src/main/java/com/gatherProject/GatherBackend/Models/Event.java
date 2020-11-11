@@ -28,10 +28,6 @@ public class Event {
         return eventId;
     }
 
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
-    }
-
     public String getName() {
         return name;
     }
@@ -64,8 +60,11 @@ public class Event {
         this.description = description;
     }
 
-    public Ministry getUserId() {
+    public Ministry getUsername() {
         return username;
     }
 
+    public void setUsername(Ministry username) {
+        this.username = username;
+    }
 }
