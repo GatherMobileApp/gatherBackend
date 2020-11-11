@@ -1,18 +1,28 @@
 package com.gatherProject.GatherBackend.Models;
 
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 public class Event {
 
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long eventId;
     private String name;
     private String date;
     private String location;
     private String description;
 
-    // temporary field to represent userId from Individual model
-    private Long userId;
+    private Ministry username;
 
+    public Event(Long eventId, String name, String date, String location, String description, Ministry username) {
+        this.eventId = eventId;
+        this.name = name;
+        this.date = date;
+        this.location = location;
+        this.description = description;
+        this.username = username;
+    }
 
     public Long getEventId() {
         return eventId;
@@ -54,8 +64,8 @@ public class Event {
         this.description = description;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Ministry getUserId() {
+        return username;
     }
 
 }
