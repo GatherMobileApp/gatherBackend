@@ -2,27 +2,31 @@ package com.gatherProject.GatherBackend.Models;
 
 import java.util.List;
 
-public class Individual {
+public class User {
 
     private String username;
     private String password;
     private String email;
-    //wil figure out this functionality
-    private String profilePic;
+    private String profilePicUrl;
     private String aboutMe;
     private String address;
     private String distancePreference;
     private String denom;
     private String style;
     private List<Feature> ministryFeatures;
-    private boolean isMinistry;
-    private List<Event> events;
-    private String fbUrl;
-    private String websiteUrl;
-    private String ministryEmail;
-    private String phoneNumber;
 
-    public Individual () {};
+    public User(String username, String password, String email, String profilePicUrl, String aboutMe, String address, String distancePreference, String denom, String style, List<Feature> ministryFeatures) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.profilePicUrl = profilePicUrl;
+        this.aboutMe = aboutMe;
+        this.address = address;
+        this.distancePreference = distancePreference;
+        this.denom = denom;
+        this.style = style;
+        this.ministryFeatures = ministryFeatures;
+    };
 
     public String getUsername() {
         return username;
@@ -49,11 +53,11 @@ public class Individual {
     }
 
     public String getProfilePic() {
-        return profilePic;
+        return profilePicUrl;
     }
 
     public void setProfilePic(String profilePic) {
-        this.profilePic = profilePic;
+        this.profilePicUrl = profilePicUrl;
     }
 
     public String getAboutMe() {
@@ -98,26 +102,6 @@ public class Individual {
 
     public List<Feature> getMinistryFeatures() {
         return ministryFeatures;
-    }
-
-    public void setMinistryFeatures(List<Feature> ministryFeatures) {
-        this.ministryFeatures = ministryFeatures;
-    }
-
-    public boolean isMinistry() {
-        return isMinistry;
-    }
-
-    public void setMinistry(boolean ministry) {
-        isMinistry = ministry;
-    }
-
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
     }
 
 }
