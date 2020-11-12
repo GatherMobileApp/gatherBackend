@@ -11,13 +11,13 @@ public class User {
     private String profilePicUrl;
     private String aboutMe;
     private String address;
-    private Integer distancePreference;
+    private String distancePreference;
     private String denom;
     private String style;
     private List<Feature> ministryFeatures;
     private List<ChatRoom> chatRooms;
 
-    public User(String username, String password, String email, String profilePicUrl, String aboutMe, String address, Integer distancePreference, String denom, String style, List<Feature> ministryFeatures) {
+    public User(String username, String password, String email, String profilePicUrl, String aboutMe, String address, String distancePreference, String denom, String style, List<Feature> ministryFeatures) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -28,11 +28,6 @@ public class User {
         this.denom = denom;
         this.style = style;
         this.ministryFeatures = ministryFeatures;
-        this.chatRooms = new ArrayList<ChatRoom>();
-    }
-
-    public User() {
-        super();
         this.chatRooms = new ArrayList<ChatRoom>();
     }
 
@@ -84,11 +79,11 @@ public class User {
         this.address = address;
     }
 
-    public Integer getDistancePreference() {
+    public String getDistancePreference() {
         return distancePreference;
     }
 
-    public void setDistancePreference(Integer distancePreference) {
+    public void setDistancePreference(String distancePreference) {
         this.distancePreference = distancePreference;
     }
 
