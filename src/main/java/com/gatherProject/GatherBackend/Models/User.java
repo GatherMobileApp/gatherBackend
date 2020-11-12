@@ -31,6 +31,11 @@ public class User {
         this.chatRooms = new ArrayList<ChatRoom>();
     }
 
+    public User() {
+        super();
+        this.chatRooms = new ArrayList<ChatRoom>();
+    }
+
     public String getUsername() {
         return username;
     }

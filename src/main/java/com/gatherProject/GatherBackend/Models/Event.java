@@ -3,13 +3,9 @@ package com.gatherProject.GatherBackend.Models;
 
 import com.google.cloud.Timestamp;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
 public class Event {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long eventId;
+    private String eventId;
     private String name;
     private Timestamp date;
     private String location;
@@ -17,7 +13,7 @@ public class Event {
 
     private Ministry username;
 
-    public Event(Long eventId, String name, Timestamp date, String location, String description, Ministry username) {
+    public Event(String eventId, String name, Timestamp date, String location, String description, Ministry username) {
         this.eventId = eventId;
         this.name = name;
         this.date = date;
@@ -28,9 +24,11 @@ public class Event {
 
     public Event() {}
 
-    public Long getEventId() {
+    public String getEventId() {
         return eventId;
     }
+
+    public void setEventId(String eventId) { this.eventId = eventId; }
 
     public String getName() {
         return name;
@@ -70,5 +68,13 @@ public class Event {
 
     public void setUsername(Ministry username) {
         this.username = username;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "eventId='" + eventId + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

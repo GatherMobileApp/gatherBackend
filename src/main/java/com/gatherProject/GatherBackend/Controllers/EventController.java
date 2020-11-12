@@ -23,7 +23,7 @@ public class EventController {
     }
 
     @GetMapping("/events/{id}")
-    public Event readEvent(@PathVariable Long id) throws ExecutionException, InterruptedException {
+    public Event readEvent(@PathVariable String id) throws ExecutionException, InterruptedException {
         return eventService.getEvent(id);
     }
 
@@ -33,7 +33,7 @@ public class EventController {
     }
 
     @DeleteMapping("/events/{id}")
-    public Event deleteEvent(@PathVariable Long id) throws ExecutionException, InterruptedException {
-        return eventService.deleteEvent(id);
+    public void deleteEvent(@PathVariable String id) throws ExecutionException, InterruptedException {
+        eventService.deleteEvent(id);
     }
 }

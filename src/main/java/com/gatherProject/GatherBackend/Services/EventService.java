@@ -13,9 +13,9 @@ public interface EventService {
 
     public Event persistEvent(Event event) throws InterruptedException, ExecutionException;
 
-    public Event getEvent(Long eventId) throws InterruptedException, ExecutionException;
+    public Event getEvent(String eventId) throws InterruptedException, ExecutionException;
 
-    public Event deleteEvent(Long eventId) throws InterruptedException, ExecutionException;
+    public void deleteEvent(String eventId) throws InterruptedException, ExecutionException;
 
 
 

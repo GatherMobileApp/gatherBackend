@@ -24,6 +24,12 @@ public class Ministry extends User {
         this.setChatRooms(chatRooms);
     }
 
+    public Ministry() {
+        super();
+        this.individualMatchList = new ArrayList<Individual>();
+        this.events = new ArrayList<Event>();
+    }
+
     public List<Individual> getIndividualMatchList() {
         return individualMatchList;
     }

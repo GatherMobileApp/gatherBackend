@@ -5,6 +5,7 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Service;
 
@@ -16,24 +17,14 @@ public class EventServiceImpl implements EventService {
     @Override
     public Event persistEvent(Event event) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(event.getEventId().toString());
-        documentReference.set(event);
-        ApiFuture<DocumentSnapshot> future = documentReference.get();
-
-        DocumentSnapshot documentSnapshot = future.get();
-
-        if(documentSnapshot.exists()) {
-            return documentSnapshot.toObject(Event.class);
-        }else {
-            return null;
-        }
-
+        dbFirestore.collection(COL_NAME).document(event.getEventId()).set(event);
+        return getEvent(event.getEventId());
     }
 
     @Override
-    public Event getEvent(Long eventId) throws InterruptedException, ExecutionException {
+    public Event getEvent(String eventId) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(eventId.toString());
+        DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(eventId);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
 
         DocumentSnapshot document = future.get();
@@ -46,18 +37,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event deleteEvent(Long eventId) throws InterruptedException, ExecutionException {
+    public void deleteEvent(String eventId) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(eventId.toString());
-        documentReference.delete();
-        ApiFuture<DocumentSnapshot> future = documentReference.get();
-
-        DocumentSnapshot document = future.get();
-
-        if(document.exists()) {
-            return document.toObject(Event.class);
-        }else {
-            return null;
-        }
+        dbFirestore.collection(COL_NAME).document(eventId).delete();
     }
 }
