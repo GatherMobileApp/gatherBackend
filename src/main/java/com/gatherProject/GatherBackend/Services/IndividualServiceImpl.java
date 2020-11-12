@@ -1,6 +1,6 @@
 package com.gatherProject.GatherBackend.Services;
 
-import com.gatherProject.GatherBackend.Models.Event;
+import com.gatherProject.GatherBackend.Models.Individual;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
@@ -11,33 +11,33 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.ExecutionException;
 
 @Service
-public class EventServiceImpl implements EventService {
+public class IndividualServiceImpl implements IndividualService{
 
     @Override
-    public Event persistEvent(Event event) throws InterruptedException, ExecutionException {
+    public Individual persistIndividual(Individual individual) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        dbFirestore.collection(COL_NAME).document(event.getEventId()).set(event);
-        return getEvent(event.getEventId());
+        dbFirestore.collection(COL_NAME).document(individual.getUsername()).set(individual);
+        return getIndividual(individual.getUsername());
     }
 
     @Override
-    public Event getEvent(String eventId) throws InterruptedException, ExecutionException {
+    public Individual getIndividual(String username) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(eventId);
+        DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(username);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
 
         DocumentSnapshot document = future.get();
 
         if(document.exists()) {
-            return document.toObject(Event.class);
+            return document.toObject(Individual.class);
         }else {
             return null;
         }
     }
 
     @Override
-    public void deleteEvent(String eventId) throws InterruptedException, ExecutionException {
+    public void deleteIndividual(String username) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        dbFirestore.collection(COL_NAME).document(eventId).delete();
+        dbFirestore.collection(COL_NAME).document(username).delete();
     }
 }
