@@ -1,6 +1,5 @@
 package com.gatherProject.GatherBackend.Services;
 
-import com.gatherProject.GatherBackend.Models.Individual;
 import com.gatherProject.GatherBackend.Models.Ministry;
 
 import java.util.concurrent.ExecutionException;
