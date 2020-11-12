@@ -1,5 +1,6 @@
 package com.gatherProject.GatherBackend.Models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -14,6 +15,7 @@ public class User {
     private String denom;
     private String style;
     private List<Feature> ministryFeatures;
+    private List<ChatRoom> chatRooms;
 
     public User(String username, String password, String email, String profilePicUrl, String aboutMe, String address, String distancePreference, String denom, String style, List<Feature> ministryFeatures) {
         this.username = username;
@@ -26,6 +28,7 @@ public class User {
         this.denom = denom;
         this.style = style;
         this.ministryFeatures = ministryFeatures;
+        this.chatRooms = new ArrayList<ChatRoom>();
     }
 
     public String getUsername() {
@@ -104,4 +107,11 @@ public class User {
         return ministryFeatures;
     }
 
+    public List<ChatRoom> getChatRooms() {
+        return chatRooms;
+    }
+
+    public void setChatRooms(List<ChatRoom> chatRooms) {
+        this.chatRooms = chatRooms;
+    }
 }
