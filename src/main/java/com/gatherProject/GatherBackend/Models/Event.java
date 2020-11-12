@@ -1,21 +1,19 @@
 package com.gatherProject.GatherBackend.Models;
 
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import com.google.cloud.Timestamp;
 
 public class Event {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long eventId;
+    private String eventId;
     private String name;
-    private String date;
+    private Timestamp date;
     private String location;
     private String description;
 
     private Ministry username;
 
-    public Event(Long eventId, String name, String date, String location, String description, Ministry username) {
+    public Event(String eventId, String name, Timestamp date, String location, String description, Ministry username) {
         this.eventId = eventId;
         this.name = name;
         this.date = date;
@@ -24,13 +22,13 @@ public class Event {
         this.username = username;
     }
 
-    public Long getEventId() {
+    public Event() {}
+
+    public String getEventId() {
         return eventId;
     }
 
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
-    }
+    public void setEventId(String eventId) { this.eventId = eventId; }
 
     public String getName() {
         return name;
@@ -40,11 +38,11 @@ public class Event {
         this.name = name;
     }
 
-    public String getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 
@@ -64,8 +62,19 @@ public class Event {
         this.description = description;
     }
 
-    public Ministry getUserId() {
+    public Ministry getUsername() {
         return username;
     }
 
+    public void setUsername(Ministry username) {
+        this.username = username;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "eventId='" + eventId + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
