@@ -1,4 +1,4 @@
-package com.gatherProject.GatherBackend.Controllers;
+package com.gatherProject.GatherBackend.Services;
 
 import com.gatherProject.GatherBackend.Models.ChatRoom;
 import com.gatherProject.GatherBackend.Models.Event;
@@ -23,11 +23,11 @@ import java.util.concurrent.ExecutionException;
 
 @SpringBootTest
 @TestMethodOrder(OrderAnnotation.class)
-class EventControllerTest {
+class EventServiceTest {
     final EventService eventService;
 
     @Autowired
-    EventControllerTest(EventService eventService) {
+    EventServiceTest(EventService eventService) {
         this.eventService = eventService;
     }
 
@@ -42,7 +42,8 @@ class EventControllerTest {
 
 
         Event event = new Event("42", "Women's Bible Study", Timestamp.of(calendar.getTime()), "Brownsburg, IN", "", ministry);
-        Event newEvent = eventService.persistEvent(event);
+        eventService.persistEvent(event);
+        Event newEvent = eventService.getEvent("42");
 
         Assertions.assertEquals(event.getName(), newEvent.getName());
     }
@@ -57,11 +58,22 @@ class EventControllerTest {
 
     @Test
     @Order(3)
-    void updateEvent() {
+    void updateEvent() throws ExecutionException, InterruptedException {
+        Event event = eventService.getEvent("42");
+        event.setName("Men's Bible Study");
+        eventService.persistEvent(event);
+        Event newEvent = eventService.getEvent("42");
+
+        Assertions.assertEquals("Men's Bible Study", newEvent.getName());
     }
 
     @Test
     @Order(4)
-    void deleteEvent() {
+    void deleteEvent() throws ExecutionException, InterruptedException {
+        Event event = eventService.getEvent("42");
+        eventService.deleteEvent(event.getEventId());
+        Event newEvent = eventService.getEvent("42");
+
+        Assertions.assertNull(newEvent);
     }
 }
