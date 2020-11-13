@@ -1,19 +1,19 @@
 package com.gatherProject.GatherBackend.Models;
 
 
-import com.google.cloud.Timestamp;
+import java.util.Date;
 
 public class Event {
 
     private String eventId;
     private String name;
-    private Timestamp date;
+    private Date date;
     private String location;
     private String description;
 
     private Ministry username;
 
-    public Event(String eventId, String name, Timestamp date, String location, String description, Ministry username) {
+    public Event(String eventId, String name, Date date, String location, String description, Ministry username) {
         this.eventId = eventId;
         this.name = name;
         this.date = date;
@@ -38,11 +38,11 @@ public class Event {
         this.name = name;
     }
 
-    public Timestamp getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

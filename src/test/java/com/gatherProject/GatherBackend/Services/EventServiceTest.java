@@ -18,6 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.concurrent.ExecutionException;
 
@@ -41,8 +42,9 @@ class EventServiceTest {
                 "1234 N Main St",  25, "Methodist", "", new ArrayList<Feature>(), new ArrayList<ChatRoom>(), "", "", "", "");
 
 
-        Event event = new Event("42", "Women's Bible Study", Timestamp.of(calendar.getTime()), "Brownsburg, IN", "", ministry);
+        Event event = new Event("42", "Women's Bible Study", new Date(calendar.getTimeInMillis()), "Brownsburg, IN", "", ministry);
         eventService.persistEvent(event);
+        Thread.sleep(5000);
         Event newEvent = eventService.getEvent("42");
 
         Assertions.assertEquals(event.getName(), newEvent.getName());
