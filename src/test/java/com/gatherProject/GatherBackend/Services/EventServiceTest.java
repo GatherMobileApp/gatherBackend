@@ -64,6 +64,7 @@ class EventServiceTest {
         Event event = eventService.getEvent("42");
         event.setName("Men's Bible Study");
         eventService.persistEvent(event);
+        Thread.sleep(5000);
         Event newEvent = eventService.getEvent("42");
 
         Assertions.assertEquals("Men's Bible Study", newEvent.getName());
