@@ -6,7 +6,6 @@ import java.util.List;
 public class Ministry extends User {
 
     private List<Individual> individualMatchList;
-    private List<Event> events;
     private String fbUrl;
     private String websiteUrl;
     private String ministryEmail;
@@ -16,7 +15,6 @@ public class Ministry extends User {
     public Ministry(String username, String password, String email, String profilePicUrl, String aboutMe, String address, String distancePreference, String denom, String style, List<Feature> ministryFeatures, String fbUrl, String ministryEmail, String websiteUrl, String phoneNumber) {
         super(username, password, email, profilePicUrl, aboutMe, address, distancePreference, denom, style, ministryFeatures);
         this.individualMatchList = new ArrayList<Individual>();
-        this.events = new ArrayList<Event>();
         this.fbUrl = fbUrl;
         this.websiteUrl = websiteUrl;
         this.ministryEmail = ministryEmail;
@@ -29,14 +27,6 @@ public class Ministry extends User {
 
     public void setIndividualMatchList(List<Individual> individualMatchList) {
         this.individualMatchList = individualMatchList;
-    }
-
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
     }
 
     public String getFbUrl() {
