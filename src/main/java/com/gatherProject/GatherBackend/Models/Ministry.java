@@ -25,7 +25,6 @@ public class Ministry extends User {
     public Ministry() {
         super();
         this.individualMatchList = new ArrayList<Individual>();
-        this.events = new ArrayList<Event>();
     }
 
     public List<Individual> getIndividualMatchList() {

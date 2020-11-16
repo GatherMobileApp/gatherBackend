@@ -75,6 +75,7 @@ class EventServiceTest {
     void deleteEvent() throws ExecutionException, InterruptedException {
         Event event = eventService.getEvent("42");
         eventService.deleteEvent(event.getEventId());
+        Thread.sleep(5000);
         Event newEvent = eventService.getEvent("42");
 
         Assertions.assertNull(newEvent);
