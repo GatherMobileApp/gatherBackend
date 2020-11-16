@@ -14,11 +14,11 @@ public class FBInitialize {
     public void initialize() {
         try {
             FileInputStream serviceAccount =
-                    new FileInputStream(System.getenv("GATHER_SERVICE_ACCOUNT_KEY"));
+                    new FileInputStream("C:\\Users\\charl\\Downloads\\service-account-key.json");
 
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                    .setDatabaseUrl(System.getenv("GATHER_DATABASE_URL"))
+                    .setDatabaseUrl("https://fir-db-for-spring-boot-fa4de.firebaseio.com")
                     .build();
 
             FirebaseApp.initializeApp(options);
