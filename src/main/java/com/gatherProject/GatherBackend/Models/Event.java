@@ -4,18 +4,21 @@ package com.gatherProject.GatherBackend.Models;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
+import java.util.Date;
+
+
 public class Event {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long eventId;
+    private String eventId;
     private String name;
-    private String date;
+    private Date date;
     private String location;
     private String description;
 
     private Ministry username;
 
-    public Event(Long eventId, String name, String date, String location, String description, Ministry username) {
+    public Event(String eventId, String name, Date date, String location, String description, Ministry username) {
         this.eventId = eventId;
         this.name = name;
         this.date = date;
@@ -24,11 +27,11 @@ public class Event {
         this.username = username;
     }
 
-    public Long getEventId() {
+    public String getEventId() {
         return eventId;
     }
 
-    public void setEventId(Long eventId) {
+    public void setEventId(String eventId) {
         this.eventId = eventId;
     }
 
@@ -40,11 +43,11 @@ public class Event {
         this.name = name;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
