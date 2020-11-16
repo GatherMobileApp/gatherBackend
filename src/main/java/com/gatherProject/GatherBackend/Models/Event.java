@@ -1,10 +1,15 @@
 package com.gatherProject.GatherBackend.Models;
 
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 import java.util.Date;
+
 
 public class Event {
 
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String eventId;
     private String name;
     private Date date;
@@ -22,13 +27,13 @@ public class Event {
         this.username = username;
     }
 
-    public Event() {}
-
     public String getEventId() {
         return eventId;
     }
 
-    public void setEventId(String eventId) { this.eventId = eventId; }
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
+    }
 
     public String getName() {
         return name;
@@ -62,19 +67,8 @@ public class Event {
         this.description = description;
     }
 
-    public Ministry getUsername() {
+    public Ministry getUserId() {
         return username;
     }
 
-    public void setUsername(Ministry username) {
-        this.username = username;
-    }
-
-    @Override
-    public String toString() {
-        return "Event{" +
-                "eventId='" + eventId + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }
