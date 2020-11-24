@@ -27,6 +27,9 @@ public class Event {
         this.username = username;
     }
 
+    public Event() {
+    }
+
     public String getEventId() {
         return eventId;
     }

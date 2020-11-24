@@ -1,11 +1,7 @@
 package com.gatherProject.GatherBackend.Services;
 
-import com.gatherProject.GatherBackend.Models.ChatRoom;
 import com.gatherProject.GatherBackend.Models.Event;
-import com.gatherProject.GatherBackend.Models.Feature;
 import com.gatherProject.GatherBackend.Models.Ministry;
-import com.gatherProject.GatherBackend.Services.EventService;
-import com.google.cloud.Timestamp;
 import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 
@@ -36,10 +32,10 @@ class EventServiceTest {
     @Order(1)
     void createEvent() throws ExecutionException, InterruptedException {
         Calendar calendar = new GregorianCalendar();
-        calendar.set(2020, 10, 16, 18, 00);
+        calendar.set(2020, Calendar.NOVEMBER, 16, 18, 0);
 
         Ministry ministry = new Ministry("unitedcalvary", "a1b2c3d4", "me@home.org", "", "At Calvary United Methodist Church, from the first time you join us in person or in one of our online experiences, you will discover a warm welcome from a congregation of people committed to making disciples of Jesus Christ for the transformation of the world.",
-                "1234 N Main St",  25, "Methodist", "", new ArrayList<Feature>(), new ArrayList<ChatRoom>(), "", "", "", "");
+                "1234 N Main St",  "25", "Methodist", "", new ArrayList<>(), "", "", "", "");
 
 
         Event event = new Event("42", "Women's Bible Study", new Date(calendar.getTimeInMillis()), "Brownsburg, IN", "", ministry);
