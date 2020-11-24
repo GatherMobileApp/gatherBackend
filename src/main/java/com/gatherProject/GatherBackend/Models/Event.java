@@ -16,15 +16,15 @@ public class Event {
     private String location;
     private String description;
 
-    private Ministry username;
+    private Ministry ministry;
 
-    public Event(String eventId, String name, Date date, String location, String description, Ministry username) {
+    public Event(String eventId, String name, Date date, String location, String description, Ministry ministry) {
         this.eventId = eventId;
         this.name = name;
         this.date = date;
         this.location = location;
         this.description = description;
-        this.username = username;
+        this.ministry = ministry;
     }
 
     public Event() {
@@ -70,10 +70,10 @@ public class Event {
         this.description = description;
     }
 
-    public Ministry getUserId() {
-        return username;
+    public Ministry getMinistry() {
+        return ministry;
     }
 
-    public void setUserId(Ministry username) { this.username = username; }
+    public void setMinistry(Ministry ministry) { this.ministry = ministry; }
 
 }
