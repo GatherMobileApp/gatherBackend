@@ -74,4 +74,6 @@ public class Event {
         return username;
     }
 
+    public void setUserId(Ministry username) { this.username = username; }
+
 }

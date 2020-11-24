@@ -60,7 +60,7 @@ public class User {
     }
 
     public void setProfilePic(String profilePic) {
-        this.profilePicUrl = profilePicUrl;
+        this.profilePicUrl = profilePic;
     }
 
     public String getAboutMe() {
