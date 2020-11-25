@@ -1,15 +1,9 @@
 package com.gatherProject.GatherBackend.Models;
 
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
 import java.util.Date;
-
 
 public class Event {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String eventId;
     private String name;
     private Date date;
@@ -18,8 +12,7 @@ public class Event {
 
     private Ministry ministry;
 
-    public Event(String eventId, String name, Date date, String location, String description, Ministry ministry) {
-        this.eventId = eventId;
+    public Event(String name, Date date, String location, String description, Ministry ministry) {
         this.name = name;
         this.date = date;
         this.location = location;

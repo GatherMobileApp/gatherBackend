@@ -14,9 +14,14 @@ import java.util.concurrent.ExecutionException;
 public class EventServiceImpl implements EventService {
 
     @Override
-    public void persistEvent(Event event) throws InterruptedException, ExecutionException {
+    public Event createEvent(Event event) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        dbFirestore.collection(COL_NAME).document(event.getEventId()).set(event);
+
+        DocumentReference documentReference = dbFirestore.collection(COL_NAME).document();
+        event.setEventId(documentReference.getId());
+        documentReference.set(event);
+
+        return event;
     }
 
     @Override
@@ -32,6 +37,16 @@ public class EventServiceImpl implements EventService {
         }else {
             return null;
         }
+    }
+
+    @Override
+    public Event updateEvent(Event event) throws InterruptedException, ExecutionException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+
+        DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(event.getEventId());
+        documentReference.set(event);
+
+        return event;
     }
 
     @Override

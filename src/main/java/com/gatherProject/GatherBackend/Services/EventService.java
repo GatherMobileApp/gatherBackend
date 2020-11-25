@@ -7,15 +7,15 @@ import java.util.concurrent.ExecutionException;
 
 public interface EventService {
 
-    public static final String COL_NAME="events";
+    String COL_NAME="events";
 
+    Event createEvent(Event event) throws InterruptedException, ExecutionException;
 
+    Event getEvent(String eventId) throws InterruptedException, ExecutionException;
 
-    public void persistEvent(Event event) throws InterruptedException, ExecutionException;
+    Event updateEvent(Event event) throws InterruptedException, ExecutionException;
 
-    public Event getEvent(String eventId) throws InterruptedException, ExecutionException;
-
-    public void deleteEvent(String eventId) throws InterruptedException, ExecutionException;
+    void deleteEvent(String eventId) throws InterruptedException, ExecutionException;
 
 
 

@@ -18,8 +18,8 @@ public class EventController {
     }
 
     @PostMapping("/events")
-    public void createEvent(@RequestBody Event event) throws ExecutionException, InterruptedException {
-        eventService.persistEvent(event);
+    public Event createEvent(@RequestBody Event event) throws ExecutionException, InterruptedException {
+        return eventService.createEvent(event);
     }
 
     @GetMapping("/events/{id}")
@@ -28,8 +28,8 @@ public class EventController {
     }
 
     @PutMapping("/events")
-    public void updateEvent(@RequestBody Event event) throws ExecutionException, InterruptedException {
-        eventService.persistEvent(event);
+    public Event updateEvent(@RequestBody Event event) throws ExecutionException, InterruptedException {
+        return eventService.updateEvent(event);
     }
 
     @DeleteMapping("/events/{id}")

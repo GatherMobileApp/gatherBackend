@@ -22,6 +22,7 @@ import java.util.concurrent.ExecutionException;
 @TestMethodOrder(OrderAnnotation.class)
 class EventServiceTest {
     final EventService eventService;
+    static String eventId;
 
     @Autowired
     EventServiceTest(EventService eventService) {
@@ -38,10 +39,11 @@ class EventServiceTest {
                 "1234 N Main St",  "25", "Methodist", "", new ArrayList<>(), "", "", "", "");
 
 
-        Event event = new Event("42", "Women's Bible Study", new Date(calendar.getTimeInMillis()), "Brownsburg, IN", "", ministry);
-        eventService.persistEvent(event);
+        Event event = new Event("Women's Bible Study", new Date(calendar.getTimeInMillis()), "Brownsburg, IN", "", ministry);
+        event = eventService.createEvent(event);
         Thread.sleep(5000);
-        Event newEvent = eventService.getEvent("42");
+        eventId = event.getEventId();
+        Event newEvent = eventService.getEvent(eventId);
 
         Assertions.assertEquals(event.getName(), newEvent.getName());
     }
@@ -49,7 +51,7 @@ class EventServiceTest {
     @Test
     @Order(2)
     void readEvent() throws ExecutionException, InterruptedException {
-        Event event = eventService.getEvent("42");
+        Event event = eventService.getEvent(eventId);
 
         Assertions.assertEquals("Women's Bible Study", event.getName());
     }
@@ -57,11 +59,11 @@ class EventServiceTest {
     @Test
     @Order(3)
     void updateEvent() throws ExecutionException, InterruptedException {
-        Event event = eventService.getEvent("42");
+        Event event = eventService.getEvent(eventId);
         event.setName("Men's Bible Study");
-        eventService.persistEvent(event);
+        eventService.updateEvent(event);
         Thread.sleep(5000);
-        Event newEvent = eventService.getEvent("42");
+        Event newEvent = eventService.getEvent(eventId);
 
         Assertions.assertEquals("Men's Bible Study", newEvent.getName());
     }
@@ -69,10 +71,10 @@ class EventServiceTest {
     @Test
     @Order(4)
     void deleteEvent() throws ExecutionException, InterruptedException {
-        Event event = eventService.getEvent("42");
+        Event event = eventService.getEvent(eventId);
         eventService.deleteEvent(event.getEventId());
         Thread.sleep(5000);
-        Event newEvent = eventService.getEvent("42");
+        Event newEvent = eventService.getEvent(eventId);
 
         Assertions.assertNull(newEvent);
     }

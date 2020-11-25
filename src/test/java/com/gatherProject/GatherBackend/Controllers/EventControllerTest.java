@@ -2,7 +2,9 @@ package com.gatherProject.GatherBackend.Controllers;
 
 import com.gatherProject.GatherBackend.Models.Event;
 import com.gatherProject.GatherBackend.Models.Ministry;
+import com.google.rpc.context.AttributeContext;
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +22,7 @@ public class EventControllerTest {
 
     @Test
     public void testEventController() throws InterruptedException {
+        String eventId;
 
         Calendar calendar = new GregorianCalendar();
         calendar.set(2020, Calendar.NOVEMBER, 16, 18, 0);
@@ -28,20 +31,24 @@ public class EventControllerTest {
                 "1234 N Main St",  "25", "Methodist", "", new ArrayList<>(), "", "", "", "");
 
 
-        Event event = new Event("42", "Women's Bible Study", new Date(calendar.getTimeInMillis()), "Brownsburg, IN", "", ministry);
+        Event event = new Event("Women's Bible Study", new Date(calendar.getTimeInMillis()), "Brownsburg, IN", "", ministry);
 
 
-        RestAssured.given().header("Content-Type", "application/json")
+        Response response = RestAssured.given().header("Content-Type", "application/json")
+                .header("API_KEY", System.getenv("API_KEY"))
                 .body(event)
-                .post("http://localhost:8080/api/events")
-                .then()
+                .post("http://localhost:8080/api/events");
+        event = response.as(Event.class);
+        eventId = event.getEventId();
+
+        response.then()
                 .assertThat()
                 .statusCode(200);
 
         Thread.sleep(5000);
 
         RestAssured.given().header("Content-Type", "application/json")
-                .get("http://localhost:8080/api/events/42")
+                .get("http://localhost:8080/api/events/" + eventId)
                 .then()
                 .assertThat()
                 .statusCode(200)
@@ -50,6 +57,7 @@ public class EventControllerTest {
         event.setName("Men's Bible Study");
 
         RestAssured.given().header("Content-Type", "application/json")
+                .header("API_KEY", System.getenv("API_KEY"))
                 .body(event)
                 .put("http://localhost:8080/api/events")
                 .then()
@@ -59,14 +67,15 @@ public class EventControllerTest {
         Thread.sleep(5000);
 
         RestAssured.given().header("Content-Type", "application/json")
-                .get("http://localhost:8080/api/events/42")
+                .get("http://localhost:8080/api/events/" + eventId)
                 .then()
                 .assertThat()
                 .statusCode(200)
                 .body("name", CoreMatchers.is("Men's Bible Study"));
 
         RestAssured.given().header("Content-Type", "application/json")
-                .delete("http://localhost:8080/api/events/42")
+                .header("API_KEY", System.getenv("API_KEY"))
+                .delete("http://localhost:8080/api/events/" + eventId)
                 .then()
                 .assertThat()
                 .statusCode(200);
