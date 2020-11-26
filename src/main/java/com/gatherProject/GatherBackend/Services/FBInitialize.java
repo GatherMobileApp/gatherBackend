@@ -16,7 +16,7 @@ public class FBInitialize {
             FileInputStream serviceAccount =
                     new FileInputStream(System.getenv("GATHER_SERVICE_ACCOUNT_KEY"));
 
-            FirebaseOptions options = new FirebaseOptions.Builder()
+            FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                     .setDatabaseUrl(System.getenv("GATHER_DATABASE_URL"))
                     .build();
