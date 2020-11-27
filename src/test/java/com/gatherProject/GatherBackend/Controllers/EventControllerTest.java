@@ -2,21 +2,17 @@ package com.gatherProject.GatherBackend.Controllers;
 
 import com.gatherProject.GatherBackend.Models.Event;
 import com.gatherProject.GatherBackend.Models.Ministry;
-import com.google.rpc.context.AttributeContext;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.hamcrest.CoreMatchers;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class EventControllerTest {
 
@@ -45,8 +41,6 @@ public class EventControllerTest {
                 .assertThat()
                 .statusCode(200);
 
-        Thread.sleep(5000);
-
         RestAssured.given().header("Content-Type", "application/json")
                 .get("http://localhost:8080/api/events/" + eventId)
                 .then()
@@ -63,8 +57,6 @@ public class EventControllerTest {
                 .then()
                 .assertThat()
                 .statusCode(200);
-
-        Thread.sleep(5000);
 
         RestAssured.given().header("Content-Type", "application/json")
                 .get("http://localhost:8080/api/events/" + eventId)

@@ -41,7 +41,6 @@ class EventServiceTest {
 
         Event event = new Event("Women's Bible Study", new Date(calendar.getTimeInMillis()), "Brownsburg, IN", "", ministry);
         event = eventService.createEvent(event);
-        Thread.sleep(5000);
         eventId = event.getEventId();
         Event newEvent = eventService.getEvent(eventId);
 
@@ -62,7 +61,6 @@ class EventServiceTest {
         Event event = eventService.getEvent(eventId);
         event.setName("Men's Bible Study");
         eventService.updateEvent(event);
-        Thread.sleep(5000);
         Event newEvent = eventService.getEvent(eventId);
 
         Assertions.assertEquals("Men's Bible Study", newEvent.getName());
@@ -73,7 +71,6 @@ class EventServiceTest {
     void deleteEvent() throws ExecutionException, InterruptedException {
         Event event = eventService.getEvent(eventId);
         eventService.deleteEvent(event.getEventId());
-        Thread.sleep(5000);
         Event newEvent = eventService.getEvent(eventId);
 
         Assertions.assertNull(newEvent);
