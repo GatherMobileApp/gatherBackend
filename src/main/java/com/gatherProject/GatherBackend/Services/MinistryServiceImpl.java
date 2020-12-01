@@ -5,6 +5,7 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,14 @@ public class MinistryServiceImpl implements MinistryService{
     @Override
     public Ministry persistMinistry(Ministry ministry) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        dbFirestore.collection(COL_NAME).document(ministry.getUsername()).set(ministry);
-        return getMinistry(ministry.getUsername());
+        DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(ministry.getUsername());
+        ApiFuture<WriteResult> future = documentReference.set(ministry);
+
+        do {
+            Thread.sleep(25);
+        } while (! future.isDone());
+
+        return ministry;
     }
 
     @Override
@@ -37,6 +44,10 @@ public class MinistryServiceImpl implements MinistryService{
     @Override
     public void deleteMinistry(String username) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        dbFirestore.collection(COL_NAME).document(username).delete();
+        ApiFuture<WriteResult> future = dbFirestore.collection(COL_NAME).document(username).delete();
+
+        do {
+            Thread.sleep(25);
+        } while (! future.isDone());
     }
 }
