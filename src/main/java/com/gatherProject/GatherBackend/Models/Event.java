@@ -13,6 +13,7 @@ public class Event {
     private Ministry ministry;
 
     public Event(String name, Date date, String location, String description, Ministry ministry) {
+        this();
         this.name = name;
         this.date = date;
         this.location = location;
@@ -21,6 +22,7 @@ public class Event {
     }
 
     public Event() {
+        super();
     }
 
     public String getEventId() {
@@ -68,5 +70,4 @@ public class Event {
     }
 
     public void setMinistry(Ministry ministry) { this.ministry = ministry; }
-
 }
