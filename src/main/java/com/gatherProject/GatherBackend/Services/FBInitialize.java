@@ -18,7 +18,7 @@ public class FBInitialize {
 
             FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                    .setDatabaseUrl(System.getenv("GATHER_DATABASE_URL"))
+                    .setDatabaseUrl(System.getenv("GATHER_DATABASE_URI"))
                     .build();
 
             FirebaseApp.initializeApp(options);
