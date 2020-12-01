@@ -11,10 +11,15 @@ public class Ministry extends User {
     private String ministryEmail;
     private String phoneNumber;
 
-
-    public Ministry(String username, String password, String email, String profilePicUrl, String aboutMe, String address, String distancePreference, String denom, String style, List<Feature> ministryFeatures, String fbUrl, String ministryEmail, String websiteUrl, String phoneNumber) {
+    public Ministry(String username, String password, String email, String profilePicUrl, String aboutMe, String address, String distancePreference, String denom, String style, List<Feature> ministryFeatures, List<Individual> individualMatchList, String fbUrl, String websiteUrl, String ministryEmail, String phoneNumber) {
         super(username, password, email, profilePicUrl, aboutMe, address, distancePreference, denom, style, ministryFeatures);
-        this.individualMatchList = new ArrayList<Individual>();
+
+        if (individualMatchList == null) {
+            this.individualMatchList = new ArrayList<>();
+        } else {
+            this.individualMatchList = individualMatchList;
+        }
+
         this.fbUrl = fbUrl;
         this.websiteUrl = websiteUrl;
         this.ministryEmail = ministryEmail;
@@ -23,7 +28,7 @@ public class Ministry extends User {
 
     public Ministry() {
         super();
-        this.individualMatchList = new ArrayList<Individual>();
+        individualMatchList = new ArrayList<>();
     }
 
     public List<Individual> getIndividualMatchList() {
