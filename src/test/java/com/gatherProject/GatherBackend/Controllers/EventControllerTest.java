@@ -8,7 +8,6 @@ import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -24,7 +23,7 @@ public class EventControllerTest {
         calendar.set(2020, Calendar.NOVEMBER, 16, 18, 0);
 
         Ministry ministry = new Ministry("unitedcalvary", "a1b2c3d4", "me@home.org", "", "At Calvary United Methodist Church, from the first time you join us in person or in one of our online experiences, you will discover a warm welcome from a congregation of people committed to making disciples of Jesus Christ for the transformation of the world.",
-                "1234 N Main St",  "25", "Methodist", "", new ArrayList<>(), "", "", "", "");
+                "1234 N Main St",  "25", "Methodist", "", null, null, "", "https://calvaryunited.org", "", "");
 
 
         Event event = new Event("Women's Bible Study", new Date(calendar.getTimeInMillis()), "Brownsburg, IN", "", ministry);
