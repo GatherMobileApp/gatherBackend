@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.concurrent.ExecutionException;
 
 @RestController
-@RequestMapping("/api/events")
+@RequestMapping("/api")
 public class EventController {
     final EventService eventService;
 
@@ -19,12 +19,12 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @PostMapping
+    @PostMapping("/events")
     public ResponseEntity<Event> createEvent(@RequestBody Event event) throws ExecutionException, InterruptedException {
         return ResponseEntity.ok(eventService.createEvent(event));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/events/{id}")
     public ResponseEntity<Event> readEvent(@PathVariable String id) throws ExecutionException, InterruptedException {
         Event event = eventService.getEvent(id);
 
@@ -35,12 +35,12 @@ public class EventController {
         return ResponseEntity.ok(event);
     }
 
-    @PutMapping
+    @PutMapping("/events")
     public ResponseEntity<Event> updateEvent(@RequestBody Event event) throws ExecutionException, InterruptedException {
         return ResponseEntity.ok(eventService.updateEvent(event));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/events/{id}")
     public ResponseEntity<Event> deleteEvent(@PathVariable String id) throws ExecutionException, InterruptedException {
         Event event = eventService.getEvent(id);
 

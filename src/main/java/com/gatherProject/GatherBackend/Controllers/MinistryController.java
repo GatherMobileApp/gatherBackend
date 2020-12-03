@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.concurrent.ExecutionException;
 
 @RestController
-@RequestMapping("/api/ministries")
+@RequestMapping("/api")
 public class MinistryController {
     final MinistryService ministryService;
 
@@ -19,12 +19,12 @@ public class MinistryController {
         this.ministryService = ministryService;
     }
 
-    @PostMapping
+    @PostMapping("/ministries")
     public ResponseEntity<Ministry> createMinistry(@RequestBody Ministry ministry) throws ExecutionException, InterruptedException {
         return ResponseEntity.ok(ministryService.persistMinistry(ministry));
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/ministries/{username}")
     public ResponseEntity<Ministry> readMinistry(@PathVariable String username) throws ExecutionException, InterruptedException {
         Ministry ministry = ministryService.getMinistry(username);
 
@@ -35,12 +35,12 @@ public class MinistryController {
         return ResponseEntity.ok(ministry);
     }
 
-    @PutMapping
+    @PutMapping("/ministries")
     public ResponseEntity<Ministry> updateMinistry(@RequestBody Ministry ministry) throws ExecutionException, InterruptedException {
         return ResponseEntity.ok(ministryService.persistMinistry(ministry));
     }
 
-    @DeleteMapping("/{username}")
+    @DeleteMapping("/ministries/{username}")
     public ResponseEntity<Ministry> deleteMinistry(@PathVariable String username) throws ExecutionException, InterruptedException {
         Ministry ministry = ministryService.getMinistry(username);
 
