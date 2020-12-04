@@ -16,7 +16,7 @@ import java.util.GregorianCalendar;
 public class EventControllerTest {
 
     @Test
-    public void testEventController() throws InterruptedException {
+    public void testEventController() {
         String eventId;
 
         Calendar calendar = new GregorianCalendar();
@@ -30,7 +30,7 @@ public class EventControllerTest {
 
 
         Response response = RestAssured.given().header("Content-Type", "application/json")
-                .header("API_KEY", System.getenv("API_KEY"))
+                .header("Authorization", "Bearer " + System.getenv("API_KEY"))
                 .body(event)
                 .post("http://localhost:8080/api/events");
         event = response.as(Event.class);
@@ -50,7 +50,7 @@ public class EventControllerTest {
         event.setName("Men's Bible Study");
 
         RestAssured.given().header("Content-Type", "application/json")
-                .header("API_KEY", System.getenv("API_KEY"))
+                .header("Authorization", "Bearer " + System.getenv("API_KEY"))
                 .body(event)
                 .put("http://localhost:8080/api/events")
                 .then()
@@ -65,7 +65,7 @@ public class EventControllerTest {
                 .body("name", CoreMatchers.is("Men's Bible Study"));
 
         RestAssured.given().header("Content-Type", "application/json")
-                .header("API_KEY", System.getenv("API_KEY"))
+                .header("Authorization", "Bearer " + System.getenv("API_KEY"))
                 .delete("http://localhost:8080/api/events/" + eventId)
                 .then()
                 .assertThat()

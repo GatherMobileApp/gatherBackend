@@ -28,7 +28,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @EnableWebSecurity
 @Order(1)
 public class AuthConfiguration extends WebSecurityConfigurerAdapter {
-    private static final String API_KEY_AUTH_HEADER_NAME = "API_KEY";
+    private static final String API_KEY_AUTH_HEADER_NAME = "Authorization";
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

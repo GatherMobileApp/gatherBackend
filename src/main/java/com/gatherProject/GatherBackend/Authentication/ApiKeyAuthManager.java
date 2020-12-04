@@ -38,7 +38,7 @@ public class ApiKeyAuthManager implements AuthenticationManager {
         String principal = (String) authentication.getPrincipal();
 
         Firestore firestore = FirestoreClient.getFirestore();
-        DocumentReference documentReference = firestore.collection("apikeys").document(principal);
+        DocumentReference documentReference = firestore.collection("apikeys").document(principal.substring(7));
         ApiFuture<DocumentSnapshot> future = documentReference.get();
         DocumentSnapshot documentSnapshot;
 
